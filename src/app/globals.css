@@ -1,11 +1,10 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
 
 @theme {
   --color-brand-green: #1B5E20;
   --color-brand-green-mid: #2E7D32;
   --color-brand-gold: #F9A825;
-  --font-sans: 'Raleway', system-ui, sans-serif;
+  --font-sans: 'Figtree', system-ui, sans-serif;
 }
 
 html {
@@ -13,7 +12,7 @@ html {
 }
 
 body {
-  font-family: 'Raleway', system-ui, sans-serif;
+  font-family: 'Figtree', system-ui, sans-serif;
 }
 
 @layer components {

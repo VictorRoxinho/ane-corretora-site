@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import JornadaCards from "@/components/JornadaCards";
 import ComoFunciona from "@/components/ComoFunciona";
 import Construtoras from "@/components/Construtoras";
 import Indicacoes from "@/components/Indicacoes";
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <JornadaCards />
         <ComoFunciona />
         <Construtoras />
         <Indicacoes />
