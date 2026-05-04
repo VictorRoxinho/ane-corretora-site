@@ -61,7 +61,24 @@ export default function JornadaCards() {
           }`}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Do zero até as chaves na mão
+            <span className="relative inline-block pb-3">
+              Do zero até as chaves na mão
+              <svg
+                className="absolute left-0 w-full"
+                style={{ bottom: "0px" }}
+                viewBox="0 0 300 10"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M1 7C30 3.5 60 8 90 5.5C120 3 155 8.5 185 6C215 3.5 248 7.5 275 5C285 4 294 6.5 299 7.5"
+                  stroke="#1B5E20"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
           </h2>
           <p className="text-gray-500 mt-4 text-lg max-w-xl mx-auto">
             O processo é mais simples do que parece. Eu fico do seu lado em cada etapa.
