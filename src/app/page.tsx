@@ -7,6 +7,7 @@ import Indicacoes from "@/components/Indicacoes";
 import CtaFinal from "@/components/CtaFinal";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ExitIntentModal from "@/components/ExitIntentModal";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFloat />
+      <ExitIntentModal />
     </>
   );
 }
