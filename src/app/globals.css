@@ -15,6 +15,15 @@ body {
   font-family: 'Figtree', system-ui, sans-serif;
 }
 
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 12s linear infinite;
+}
+
 @layer components {
   .btn-whatsapp {
     @apply inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
