@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { WA_LINK } from "@/lib/constants";
 
 const slides = [
   {
     id: 1,
     bgGradient: "from-[#1B5E20] to-[#2E7D32]",
-    bgImage: "/images/banner-1.jpg",
+    bgImage: "/images/corretora_banner_principal-removebg.png",
     overlay: "bg-black/40",
     content: {
       type: "main" as const,
@@ -35,7 +35,7 @@ const slides = [
   {
     id: 3,
     bgGradient: "from-[#1A3A1A] to-[#2D5A2D]",
-    bgImage: "/images/banner-conquista-vila-verde.png",
+    bgImage: "/images/Banner - Conquista Vila Verde.png",
     overlay: "bg-black/50",
     content: {
       type: "launch" as const,
@@ -53,6 +53,7 @@ const slides = [
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number>(0);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
@@ -63,6 +64,17 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [paused, next]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
+    setPaused(false);
+  };
+
   const slide = slides[current];
 
   return (
@@ -70,6 +82,8 @@ export default function Hero() {
       className="relative h-screen overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Backgrounds */}
       {slides.map((s, i) => (
@@ -79,9 +93,26 @@ export default function Hero() {
             i === current ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className={`absolute inset-0 bg-gradient-to-br ${s.bgGradient}`} />
-          <BgImage src={s.bgImage} />
-          <div className={`absolute inset-0 ${s.overlay}`} />
+          {s.content.type === "main" ? (
+            <>
+              {/* Slide principal: gradiente full + imagem à direita */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${s.bgGradient}`} />
+              <div className="absolute right-[6%] top-0 h-full w-2/5 md:w-[38%]" style={{ paddingTop: "80px" }}>
+                <img
+                  src={s.bgImage}
+                  alt=""
+                  className="w-full h-full object-contain object-bottom"
+                  onError={(e) => (e.currentTarget.style.display = "none")}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={`absolute inset-0 bg-gradient-to-br ${s.bgGradient}`} />
+              <BgImage src={s.bgImage} />
+              <div className={`absolute inset-0 ${s.overlay}`} />
+            </>
+          )}
         </div>
       ))}
 
@@ -191,23 +222,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Arrow navigation */}
-      <button
-        onClick={prev}
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/15 hover:bg-white/30 backdrop-blur-sm rounded-xl items-center justify-center text-white transition-all"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button
-        onClick={next}
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/15 hover:bg-white/30 backdrop-blur-sm rounded-xl items-center justify-center text-white transition-all"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
     </section>
   );
 }

@@ -8,3 +8,5 @@ export const WA_MESSAGE_INDICACAO = encodeURIComponent(
   "Olá Ane! Quero indicar alguém pro programa e receber os R$500 no Pix. Como funciona?"
 );
 export const WA_LINK_INDICACAO = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE_INDICACAO}`;
+
+export const IG_LINK = "https://instagram.com/anefranca.corretora";

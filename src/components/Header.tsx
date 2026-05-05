@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { WA_LINK } from "@/lib/constants";
+import { WA_LINK, IG_LINK } from "@/lib/constants";
 
 const navLinks = [
   { href: "#como-funciona", label: "Como Funciona" },
@@ -53,8 +53,22 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Right: WhatsApp CTA + mobile hamburger */}
+          {/* Right: Instagram + WhatsApp CTA + mobile hamburger */}
           <div className="flex items-center gap-3 flex-shrink-0">
+
+            {/* Instagram icon */}
+            <a
+              href={IG_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center text-white transition-opacity hover:opacity-80"
+              style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}
+              aria-label="Instagram"
+            >
+              <InstagramIcon />
+            </a>
+
+            {/* Desktop: WhatsApp CTA */}
             <a
               href={WA_LINK}
               target="_blank"
@@ -70,7 +84,7 @@ export default function Header() {
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="sm:hidden w-9 h-9 bg-[#25D366] rounded-xl flex items-center justify-center text-white"
+              className="sm:hidden w-8 h-8 bg-[#25D366] rounded-xl flex items-center justify-center text-white"
             >
               <WhatsAppIcon />
             </a>
@@ -127,7 +141,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="p-5 border-t border-gray-100">
+        <div className="p-5 border-t border-gray-100 flex flex-col gap-3">
           <a
             href={WA_LINK}
             target="_blank"
@@ -137,6 +151,17 @@ export default function Header() {
           >
             <WhatsAppIcon />
             Falar no WhatsApp
+          </a>
+          <a
+            href={IG_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+            className="flex items-center justify-center gap-2 text-white font-semibold rounded-xl px-6 py-3 w-full transition-opacity hover:opacity-80"
+            style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}
+          >
+            <InstagramIcon />
+            Ver no Instagram
           </a>
         </div>
       </div>
@@ -181,6 +206,14 @@ export function AnePhoto({ size = 40 }: { size?: number }) {
         />
       )}
     </div>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+    </svg>
   );
 }
 
