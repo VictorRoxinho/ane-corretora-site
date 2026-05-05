@@ -81,7 +81,12 @@ export default function Indicacoes() {
             {/* Title */}
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight text-white tracking-tight">
               Indique um amigo<br />e ganhe{" "}
-              <span style={{ color: "#F9A825" }}>R$ 500 no Pix!</span>
+              <span className="relative inline-block pb-3" style={{ color: "#F9A825" }}>
+                R$ 500 no Pix!
+                <svg className="absolute left-0 w-full" style={{ bottom: 0 }} viewBox="0 0 300 10" fill="none" preserveAspectRatio="none">
+                  <path d="M1 7C35 3 70 9 105 6C140 3 175 8 210 5C240 3.5 268 7.5 298 6" stroke="#F9A825" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
             </h2>
 
             {/* Description */}
@@ -172,6 +177,7 @@ export default function Indicacoes() {
 
         </div>
       </div>
+
     </section>
   );
 }

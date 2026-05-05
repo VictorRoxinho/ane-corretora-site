@@ -16,7 +16,13 @@ export default function ComoFunciona() {
         {/* Left: text */}
         <div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-            Quem pode<br />participar?
+            Quem pode<br />
+            <span className="relative inline-block pb-3">
+              participar?
+              <svg className="absolute left-0 w-full" style={{ bottom: 0 }} viewBox="0 0 300 10" fill="none" preserveAspectRatio="none">
+                <path d="M2 7C28 3 58 9 88 6C118 3 148 8.5 178 5.5C205 3 238 7.5 270 5C282 4 293 6.5 298 7.5" stroke="#1B5E20" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
           </h2>
           <p className="text-gray-500 text-base mb-8">
             Se você se encaixa nesses requisitos, grandes chances de você já ter direito ao programa. Tem dúvida? Me manda uma mensagem que eu te falo na hora.

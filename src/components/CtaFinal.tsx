@@ -46,7 +46,12 @@ export default function CtaFinal() {
           >
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight leading-tight">
               Vamos dar o<br />
-              <span className="text-brand-green">primeiro passo?</span>
+              <span className="relative inline-block pb-3 text-brand-green">
+                primeiro passo?
+                <svg className="absolute left-0 w-full" style={{ bottom: 0 }} viewBox="0 0 300 10" fill="none" preserveAspectRatio="none">
+                  <path d="M2 8C40 4 80 9 120 6C160 3 200 8.5 238 5.5C262 4 283 7 298 6.5" stroke="#1B5E20" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
             </h2>
             <p className="text-lg text-gray-500 mb-10 leading-relaxed max-w-md">
               Ficou com alguma dúvida ou quer fazer uma simulação sem compromisso? Me mande uma mensagem. Estou aqui para ajudar você a conquistar seu imóvel.

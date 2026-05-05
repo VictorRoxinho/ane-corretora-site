@@ -86,7 +86,7 @@ export default function Hero() {
       ))}
 
       {/* Content — bottom left */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 px-6 md:px-12 pb-20 md:pb-16">
+      <div className="absolute bottom-0 left-0 right-0 z-10 px-6 md:px-12 pb-36 md:pb-32">
         <div className="flex items-end justify-between gap-8">
 
           {/* Left: text */}
@@ -162,7 +162,7 @@ export default function Hero() {
       </div>
 
       {/* Slide indicators — bottom center */}
-      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+      <div className="absolute bottom-28 md:bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -173,6 +173,22 @@ export default function Hero() {
             }`}
           />
         ))}
+      </div>
+
+      {/* Wave divider animada → JornadaCards branco */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none overflow-hidden" style={{ marginBottom: "-2px", height: "90px" }}>
+        {/* Camada 2 — mais suave, mais rápida, levemente desfasada */}
+        <div style={{ width: "200%", animation: "wave-flow 7s linear infinite", position: "absolute", bottom: 0, left: 0 }}>
+          <svg viewBox="0 0 2880 90" preserveAspectRatio="none" style={{ width: "100%", height: "90px", display: "block" }}>
+            <path d="M0,65 C480,20 960,85 1440,65 C1920,20 2400,85 2880,65 L2880,90 L0,90 Z" fill="rgba(255,255,255,0.4)"/>
+          </svg>
+        </div>
+        {/* Camada 1 — principal, mais lenta */}
+        <div style={{ width: "200%", animation: "wave-flow 12s linear infinite", position: "absolute", bottom: 0, left: 0 }}>
+          <svg viewBox="0 0 2880 90" preserveAspectRatio="none" style={{ width: "100%", height: "90px", display: "block" }}>
+            <path d="M0,55 C480,0 960,80 1440,55 C1920,0 2400,80 2880,55 L2880,90 L0,90 Z" fill="white"/>
+          </svg>
+        </div>
       </div>
 
       {/* Arrow navigation */}
