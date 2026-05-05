@@ -28,13 +28,13 @@ const phases: Phase[] = [
         id: "nomenclatura",
         title: "Nomenclatura no código",
         description: "Ajeitar as nomenclaturas de arquivos e componentes do código",
-        done: false,
+        done: true,
       },
       {
         id: "cta-final-reformular",
         title: "Reformular o CTA Final",
         description: "Melhorar o design do cta final",
-        done: false,
+        done: true,
       },
       {
         id: "ssr",

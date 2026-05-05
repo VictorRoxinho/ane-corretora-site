@@ -80,8 +80,6 @@ export default function Hero() {
   return (
     <section
       className="relative h-screen overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -97,6 +95,11 @@ export default function Hero() {
             <>
               {/* Slide principal: gradiente full + imagem à direita */}
               <div className={`absolute inset-0 bg-gradient-to-br ${s.bgGradient}`} />
+              <img
+                src="/images/banner-mrv-bela-vista.jpeg"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
+              />
               <div className="absolute right-[6%] top-0 h-full w-2/5 md:w-[38%]" style={{ paddingTop: "80px" }}>
                 <img
                   src={s.bgImage}
@@ -199,10 +202,18 @@ export default function Hero() {
             key={i}
             onClick={() => setCurrent(i)}
             aria-label={`Slide ${i + 1}`}
-            className={`transition-all duration-300 rounded-full ${
-              i === current ? "w-8 h-2.5 bg-white" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
+            className={`transition-all duration-300 rounded-full overflow-hidden ${
+              i === current ? "w-16 h-2.5 bg-white/30" : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
             }`}
-          />
+          >
+            {i === current && (
+              <div
+                key={current}
+                className="h-full bg-white rounded-full"
+                style={{ animation: "fillBar 6s linear forwards" }}
+              />
+            )}
+          </button>
         ))}
       </div>
 
