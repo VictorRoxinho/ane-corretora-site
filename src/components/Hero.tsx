@@ -5,7 +5,7 @@ const slides = [
   {
     id: 1,
     bgGradient: "from-[#1B5E20] to-[#2E7D32]",
-    bgImage: "/images/corretora_banner_principal-removebg.png",
+    bgImage: "/images/corretora-banner-principal.png",
     overlay: "bg-black/40",
     content: {
       type: "main" as const,
@@ -19,7 +19,7 @@ const slides = [
   {
     id: 2,
     bgGradient: "from-[#0D2137] to-[#1A3A5C]",
-    bgImage: "/images/Banner MRV Bela Vista.jpeg",
+    bgImage: "/images/banner-mrv-bela-vista.jpeg",
     overlay: "bg-black/50",
     content: {
       type: "launch" as const,
@@ -35,7 +35,7 @@ const slides = [
   {
     id: 3,
     bgGradient: "from-[#1A3A1A] to-[#2D5A2D]",
-    bgImage: "/images/Banner - Conquista Vila Verde.png",
+    bgImage: "/images/banner-conquista-vila-verde.png",
     overlay: "bg-black/50",
     content: {
       type: "launch" as const,

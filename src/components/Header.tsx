@@ -5,6 +5,7 @@ import { WhatsAppIcon, InstagramIcon } from "@/components/icons";
 const navLinks = [
   { href: "#como-funciona", label: "Como Funciona" },
   { href: "#construtoras", label: "Construtoras" },
+  { href: "#depoimentos", label: "Depoimentos" },
   { href: "#indicacoes", label: "Indicações R$500" },
   { href: "#contato", label: "Contato" },
 ];
@@ -181,7 +182,7 @@ function Logo() {
   }
   return (
     <img
-      src="/images/Opçao 1-Photoroom.png"
+      src="/images/opcao-photoroom.png"
       alt="Ane França Corretora"
       className="h-10 md:h-14 w-auto"
       onError={() => setError(true)}
@@ -200,7 +201,7 @@ export function AnePhoto({ size = 40 }: { size?: number }) {
         <span className="text-white font-bold text-xs">AF</span>
       ) : (
         <img
-          src="/images/Perfil.png"
+          src="/images/perfil.png"
           alt="Ane França"
           className="w-full h-full object-cover"
           onError={() => setError(true)}

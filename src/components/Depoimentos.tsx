@@ -9,7 +9,7 @@ const depoimentos = [
     nome: "Juliana Souza",
     bairro: "Pernambués, Salvador",
     empreendimento: "MRV Bela Vista",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-1.jpg",
   },
   {
@@ -17,7 +17,7 @@ const depoimentos = [
     nome: "Carlos e Fernanda Lima",
     bairro: "Abrantes, Camaçari",
     empreendimento: "Conquista Vila Verde",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-2.jpg",
   },
   {
@@ -25,7 +25,7 @@ const depoimentos = [
     nome: "Marcos Oliveira",
     bairro: "Cajazeiras, Salvador",
     empreendimento: "MRV Bela Vista",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-3.jpg",
   },
   {
@@ -33,7 +33,7 @@ const depoimentos = [
     nome: "Patrícia Mendes",
     bairro: "Fazenda Grande, Salvador",
     empreendimento: "Tenda Viver Bem",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-4.jpg",
   },
   {
@@ -41,7 +41,7 @@ const depoimentos = [
     nome: "Ricardo e Ana Lima",
     bairro: "Mussurunga, Salvador",
     empreendimento: "MRV Bela Vista",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-5.jpg",
   },
   {
@@ -49,7 +49,7 @@ const depoimentos = [
     nome: "Fernanda Costa",
     bairro: "Lauro de Freitas",
     empreendimento: "Conquista Vila Verde",
-    foto: "/images/Exemplo Foto Perfil.jpg",
+    foto: "/images/foto-perfil-exemplo.jpg",
     screenshot: "/images/depoimento-6.jpg",
   },
 ];
@@ -187,12 +187,23 @@ export default function Depoimentos() {
                 key={i}
                 onClick={() => setCurrent(i)}
                 aria-label={`Depoimento ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
+                className={`rounded-full overflow-hidden transition-all duration-300 ${
                   i === current
-                    ? "w-6 h-2.5 bg-brand-green"
+                    ? "w-16 h-2.5 bg-gray-200"
                     : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
                 }`}
-              />
+              >
+                {i === current && (
+                  <div
+                    key={current}
+                    className="h-full bg-brand-green rounded-full"
+                    style={{
+                      animation: "fillBar 5s linear forwards",
+                      animationPlayState: paused ? "paused" : "running",
+                    }}
+                  />
+                )}
+              </button>
             ))}
           </div>
         )}

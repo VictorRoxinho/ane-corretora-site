@@ -11,17 +11,20 @@ function BuildingIcon() {
 function MarqueeItems() {
   return (
     <>
-      <div className="flex items-center gap-3 text-3xl md:text-5xl font-black tracking-tighter flex-shrink-0" style={{ color: "#1B5E20" }}>
-        <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl flex-shrink-0" style={{ backgroundColor: "#1B5E20", transform: "rotate(3deg)" }} />
-        MRV
+      <div className="h-10 md:h-14 w-28 md:w-36 flex-shrink-0">
+        <img src="/images/logo-construtora-mrv.png" alt="MRV" loading="eager" className="h-full w-full object-contain" />
       </div>
       <div className="flex items-center gap-3 text-3xl md:text-5xl font-black tracking-tighter flex-shrink-0" style={{ color: "#E31E24" }}>
-        <div className="w-8 h-8 md:w-12 md:h-12 rounded-full flex-shrink-0" style={{ backgroundColor: "#E31E24" }} />
+        <div className="w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
+          <img src="/images/logo-construtora-tenda.png" alt="" loading="eager" className="w-full h-full object-contain" />
+        </div>
         Tenda
       </div>
-      <div className="flex items-center gap-3 text-3xl md:text-5xl font-black tracking-tighter flex-shrink-0" style={{ color: "#0052A5" }}>
-        <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl flex-shrink-0" style={{ backgroundColor: "#0052A5", transform: "rotate(45deg)" }} />
-        Direcional
+      <div className="h-10 md:h-14 w-36 md:w-48 flex-shrink-0">
+        <img src="/images/logo-construtora-direcional.png" alt="Direcional" loading="eager" className="h-full w-full object-contain" />
+      </div>
+      <div className="h-10 md:h-14 w-28 md:w-36 flex-shrink-0">
+        <img src="/images/logo-construtora-stanza.png" alt="Stanza" loading="eager" className="h-full w-full object-contain" />
       </div>
       <div className="flex items-center gap-2 text-lg md:text-2xl font-bold text-gray-300 flex-shrink-0">
         <BuildingIcon />
@@ -49,7 +52,7 @@ export default function Construtoras() {
             Trabalho com as{" "}
             <span
               className="relative inline-block px-2"
-              style={{ color: "#1B5E20", transform: "rotate(2deg)" }}
+              style={{ color: "#1B5E20" }}
             >
               {/* highlighter effect */}
               <span
@@ -69,11 +72,14 @@ export default function Construtoras() {
           className="relative flex overflow-hidden bg-white py-6 md:py-8 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-gray-100"
           style={{ transform: "rotate(-1deg)" }}
         >
-          {/* Scrolling track */}
-          <div className="animate-marquee flex items-center gap-8 md:gap-16 px-6 md:px-8 whitespace-nowrap">
-            <MarqueeItems />
-            {/* Duplicate for seamless loop */}
-            <MarqueeItems />
+          {/* Scrolling track — two copies with matching trailing gap for seamless -50% loop */}
+          <div className="animate-marquee flex items-center" style={{ willChange: "transform" }}>
+            <div className="flex items-center gap-8 md:gap-16 pr-8 md:pr-16">
+              <MarqueeItems />
+            </div>
+            <div className="flex items-center gap-8 md:gap-16 pr-8 md:pr-16">
+              <MarqueeItems />
+            </div>
           </div>
 
           {/* Fade edges */}

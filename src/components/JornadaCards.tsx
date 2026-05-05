@@ -113,7 +113,7 @@ function AnimatedCard({ card, index }: { card: typeof cards[0]; index: number })
         <span className="text-white font-bold text-xl md:text-2xl leading-tight">
           {card.label}
         </span>
-        <p className="hidden md:block text-white/90 text-lg leading-relaxed opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+        <p className="hidden md:block text-white/70 text-base leading-relaxed group-hover:text-white group-hover:text-lg transition-all duration-300">
           {card.description}
         </p>
       </div>
@@ -132,7 +132,7 @@ function BgImage({ src }: { src: string }) {
     <img
       src={src}
       alt=""
-      className="absolute inset-0 w-full h-full object-cover opacity-40"
+      className="absolute inset-0 w-full h-full object-cover opacity-40 transition-all duration-300 group-hover:blur-sm group-hover:opacity-30"
       onError={(e) => (e.currentTarget.style.display = "none")}
     />
   );

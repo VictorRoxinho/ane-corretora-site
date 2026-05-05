@@ -22,6 +22,18 @@ const phases: Phase[] = [
         id: "testimonials",
         title: "Seção de depoimentos de clientes",
         description: "Mínimo 3 depoimentos reais com foto e nome.",
+        done: true,
+      },
+      {
+        id: "nomenclatura",
+        title: "Nomenclatura no código",
+        description: "Ajeitar as nomenclaturas de arquivos e componentes do código",
+        done: false,
+      },
+      {
+        id: "cta-final-reformular",
+        title: "Reformular o CTA Final",
+        description: "Melhorar o design do cta final",
         done: false,
       },
       {
