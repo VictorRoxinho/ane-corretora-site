@@ -27,7 +27,7 @@ export default function CtaFinal() {
   }
 
   return (
-    <section id="contato" className="relative bg-white py-20 overflow-hidden" style={{ minHeight: 720 }}>
+    <section id="contato" className="relative bg-white py-16 md:py-20 overflow-hidden lg:min-h-[720px]">
 
       {/* Dot pattern */}
       <div
@@ -44,7 +44,7 @@ export default function CtaFinal() {
             Online · Ane está digitando
           </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight mb-6">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight mb-6">
             Vamos dar o<br />
             <span className="relative inline-block">
               <span className="absolute inset-x-0 -skew-x-3 rounded" style={{ backgroundColor: "#AEEA0080", bottom: 4, height: "40%" }} />
@@ -84,9 +84,9 @@ export default function CtaFinal() {
 
         {/* Right: phone mockup */}
         <div className="lg:col-span-5">
-          <div className="relative mx-auto" style={{ maxWidth: 360 }}>
+          <div className="relative mx-auto" style={{ maxWidth: "min(300px, 85vw)" }}>
             <div
-              className="relative rounded-[2.5rem] shadow-2xl overflow-hidden border-[8px] border-gray-900"
+              className="relative rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-gray-900 md:rounded-[2.5rem] md:border-[8px]"
               style={{ background: "#E5DDD5", aspectRatio: "9/16", transform: "rotate(2deg)" }}
             >
               {/* WA header */}
@@ -108,7 +108,7 @@ export default function CtaFinal() {
                   background: "#E5DDD5",
                   backgroundImage: "radial-gradient(#00000008 1px, transparent 1px)",
                   backgroundSize: "16px 16px",
-                  minHeight: 380,
+                  minHeight: 260,
                 }}
               >
                 <Bubble side="them">Oi! Bem-vindo 👋 Em que posso te ajudar hoje?</Bubble>
@@ -145,7 +145,7 @@ export default function CtaFinal() {
             {/* CTA button */}
             <button
               onClick={openWhatsApp}
-              className="mt-6 w-full flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-black px-6 py-5 rounded-2xl shadow-xl transition-colors"
+              className="mt-4 w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm px-4 py-3 rounded-xl shadow-lg transition-colors"
             >
               Abrir essa conversa no WhatsApp →
             </button>
