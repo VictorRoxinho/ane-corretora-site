@@ -4,6 +4,7 @@ import JornadaCards from "@/components/JornadaCards";
 import ComoFunciona from "@/components/ComoFunciona";
 import Construtoras from "@/components/Construtoras";
 import Indicacoes from "@/components/Indicacoes";
+import Depoimentos from "@/components/Depoimentos";
 import CtaFinal from "@/components/CtaFinal";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -19,6 +20,7 @@ export default function Home() {
         <ComoFunciona />
         <Construtoras />
         <Indicacoes />
+        <Depoimentos />
         <CtaFinal />
       </main>
       <Footer />

@@ -14,6 +14,39 @@ const phases: Phase[] = [
   {
     id: "phase-1",
     number: 1,
+    title: "Lançamento",
+    subtitle: "Conteúdo e conversão",
+    tagColor: "blue",
+    items: [
+      {
+        id: "testimonials",
+        title: "Seção de depoimentos de clientes",
+        description: "Mínimo 3 depoimentos reais com foto e nome.",
+        done: false,
+      },
+      {
+        id: "ssr",
+        title: "Migrar para SSR (Next.js)",
+        description: "Fazer antes das páginas de empreendimentos. SPA não indexa páginas internas no Google — todo esforço de conteúdo seria desperdiçado.",
+        done: false,
+      },
+      {
+        id: "launch-pages",
+        title: "Páginas de detalhe dos lançamentos",
+        description: "Uma página por empreendimento com fotos, localização, faixa de renda, plantas e CTA.",
+        done: false,
+      },
+      {
+        id: "simulator",
+        title: "Simulador de renda/parcela",
+        description: "Campo de renda familiar → mostra faixa MCMV elegível e parcela estimada.",
+        done: false,
+      },
+    ],
+  },
+  {
+    id: "phase-2",
+    number: 2,
     title: "Pré-lançamento obrigatório",
     subtitle: "Antes de ir ao ar",
     tagColor: "green",
@@ -63,33 +96,6 @@ const phases: Phase[] = [
     ],
   },
   {
-    id: "phase-2",
-    number: 2,
-    title: "Lançamento",
-    subtitle: "Conteúdo e conversão",
-    tagColor: "blue",
-    items: [
-      {
-        id: "testimonials",
-        title: "Seção de depoimentos de clientes",
-        description: "Mínimo 3 depoimentos reais com foto e nome.",
-        done: false,
-      },
-      {
-        id: "launch-pages",
-        title: "Páginas de detalhe dos lançamentos",
-        description: "Uma página por empreendimento com fotos, localização, faixa de renda, plantas e CTA.",
-        done: false,
-      },
-      {
-        id: "simulator",
-        title: "Simulador de renda/parcela",
-        description: "Campo de renda familiar → mostra faixa MCMV elegível e parcela estimada.",
-        done: false,
-      },
-    ],
-  },
-  {
     id: "phase-3",
     number: 3,
     title: "Mês 1–2",
@@ -106,12 +112,6 @@ const phases: Phase[] = [
         id: "link-building",
         title: "Link building local",
         description: "Cadastro em VivaReal, ZAP, OLX com link para o site.",
-        done: false,
-      },
-      {
-        id: "ssr",
-        title: "Avaliar migração para SSR (Next.js)",
-        description: "SPA tem SEO limitado para páginas internas e blog.",
         done: false,
       },
     ],
