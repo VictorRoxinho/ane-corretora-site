@@ -1,19 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { IG_LINK } from "@/lib/constants";
-
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  return { ref, visible };
-}
+import { useState } from "react";
+import { IG_LINK, WHATSAPP_NUMBER } from "@/lib/constants";
+import { useReveal } from "@/hooks/useReveal";
 
 export default function CtaFinal() {
   const left = useReveal();
@@ -24,7 +11,7 @@ export default function CtaFinal() {
   function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
     const text = `Olá Ane! Meu nome é ${form.name}. ${form.message || "Gostaria de saber mais sobre o Minha Casa Minha Vida."}`;
-    window.open(`https://wa.me/5571998193275?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
   }
 
   return (

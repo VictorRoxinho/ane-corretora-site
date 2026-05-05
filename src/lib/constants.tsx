@@ -10,3 +10,5 @@ export const WA_MESSAGE_INDICACAO = encodeURIComponent(
 export const WA_LINK_INDICACAO = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE_INDICACAO}`;
 
 export const IG_LINK = "https://instagram.com/anefranca.corretora";
+
+export const IG_GRADIENT = "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)";

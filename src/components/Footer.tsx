@@ -1,4 +1,4 @@
-import { WA_LINK } from "@/lib/constants";
+import { WA_LINK, IG_LINK } from "@/lib/constants";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -23,6 +23,14 @@ export default function Footer() {
               className="hover:text-white transition-colors"
             >
               WhatsApp
+            </a>
+            <a
+              href={IG_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Instagram
             </a>
           </nav>
         </div>

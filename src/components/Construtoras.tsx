@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useReveal } from "@/hooks/useReveal";
 
 function BuildingIcon() {
   return (
@@ -32,17 +32,7 @@ function MarqueeItems() {
 }
 
 export default function Construtoras() {
-  const titleRef = useRef<HTMLDivElement>(null);
-  const [titleVisible, setTitleVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setTitleVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (titleRef.current) observer.observe(titleRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: titleRef, visible: titleVisible } = useReveal(0.2);
 
   return (
     <section id="construtoras" className="py-20 bg-gray-50 overflow-hidden">

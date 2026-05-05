@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://corretoraanefranca.com.br/sitemap.xml

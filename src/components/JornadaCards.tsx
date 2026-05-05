@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { WA_LINK } from "@/lib/constants";
+import { useReveal } from "@/hooks/useReveal";
 
 const cards = [
   {
@@ -37,17 +37,7 @@ const cards = [
 ];
 
 export default function JornadaCards() {
-  const titleRef = useRef<HTMLDivElement>(null);
-  const [titleVisible, setTitleVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setTitleVisible(true); },
-      { threshold: 0.2 }
-    );
-    if (titleRef.current) observer.observe(titleRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: titleRef, visible: titleVisible } = useReveal(0.2);
 
   return (
     <section className="py-20 px-6 bg-white">
@@ -97,17 +87,7 @@ export default function JornadaCards() {
 }
 
 function AnimatedCard({ card, index }: { card: typeof cards[0]; index: number }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, visible } = useReveal<HTMLAnchorElement>(0.15);
 
   return (
     <a
@@ -119,21 +99,14 @@ function AnimatedCard({ card, index }: { card: typeof cards[0]; index: number })
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(32px)",
-        transition: `opacity 4s ease ${index * 300}ms, transform 4s ease ${index * 300}ms`,
+        transition: `opacity 3s ease ${index * 300}ms, transform 3s ease ${index * 300}ms`,
       }}
     >
-      {/* Background gradient */}
       <div className={`absolute inset-0 bg-gradient-to-b ${card.bg}`} />
-
-      {/* Background image */}
       <BgImage src={card.image} />
-
-      {/* Dark overlay on hover */}
       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
 
-      {/* Content */}
       <div className="absolute inset-0 p-4 md:p-5 flex items-center gap-4 md:flex-col md:items-start md:justify-start md:gap-2">
-        {/* Step badge — mobile only */}
         <div className="md:hidden w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
           <span className="text-white font-bold text-sm">{String(index + 1).padStart(2, "0")}</span>
         </div>
@@ -145,7 +118,6 @@ function AnimatedCard({ card, index }: { card: typeof cards[0]; index: number })
         </p>
       </div>
 
-      {/* Arrow on hover — desktop only */}
       <div className="hidden md:flex absolute top-4 right-4 w-8 h-8 bg-white/20 group-hover:bg-white/40 rounded-full items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
