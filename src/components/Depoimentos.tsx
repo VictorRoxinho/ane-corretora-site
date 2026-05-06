@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { WA_LINK } from "@/lib/constants";
 import { useReveal } from "@/hooks/useReveal";
 
@@ -106,6 +106,10 @@ export default function Depoimentos() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cardsPerView, setCardsPerView] = useState(1);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [showCursor, setShowCursor] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const dragStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const update = () => setCardsPerView(window.innerWidth >= 768 ? 3 : 1);
@@ -158,25 +162,93 @@ export default function Depoimentos() {
         </div>
 
         {/* Carousel */}
-        <div
-          className="overflow-hidden"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
+        <div className="relative">
+          {/* Prev arrow */}
+          {current > 0 && (
+            <button
+              onClick={() => setCurrent((c) => Math.max(0, c - 1))}
+              aria-label="Anterior"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-10 h-10 rounded-full bg-gray-900/80 hover:bg-gray-900 text-white flex items-center justify-center shadow-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
           <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${current * cardWidth}%)` }}
+            ref={trackRef}
+            className="overflow-hidden cursor-none select-none"
+            onMouseEnter={() => { setPaused(true); setShowCursor(true); }}
+            onMouseLeave={() => {
+              setPaused(false);
+              setShowCursor(false);
+              dragStartX.current = null;
+            }}
+            onMouseDown={(e) => {
+              dragStartX.current = e.clientX;
+            }}
+            onMouseMove={(e) => {
+              if (!trackRef.current) return;
+              const rect = trackRef.current.getBoundingClientRect();
+              setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+            }}
+            onMouseUp={(e) => {
+              if (dragStartX.current !== null) {
+                const delta = e.clientX - dragStartX.current;
+                if (Math.abs(delta) > 50) {
+                  if (delta < 0) setCurrent((c) => Math.min(maxIndex, c + 1));
+                  else setCurrent((c) => Math.max(0, c - 1));
+                }
+              }
+              dragStartX.current = null;
+            }}
           >
-            {depoimentos.map((dep) => (
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${current * cardWidth}%)` }}
+            >
+              {depoimentos.map((dep) => (
+                <div
+                  key={dep.id}
+                  className="flex-shrink-0 px-3"
+                  style={{ width: `${cardWidth}%` }}
+                >
+                  <DepoimentoCard dep={dep} />
+                </div>
+              ))}
+            </div>
+
+            {/* Custom cursor */}
+            {showCursor && (
               <div
-                key={dep.id}
-                className="flex-shrink-0 px-3"
-                style={{ width: `${cardWidth}%` }}
+                className="absolute pointer-events-none z-20 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: cursorPos.x, top: cursorPos.y }}
               >
-                <DepoimentoCard dep={dep} />
+                <div className="flex items-center gap-2 bg-gray-900/90 text-white px-4 py-2.5 rounded-full select-none">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                  </svg>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
               </div>
-            ))}
+            )}
           </div>
+
+          {/* Next arrow */}
+          {current < maxIndex && (
+            <button
+              onClick={() => setCurrent((c) => Math.min(maxIndex, c + 1))}
+              aria-label="Próximo"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-10 h-10 rounded-full bg-gray-900/80 hover:bg-gray-900 text-white flex items-center justify-center shadow-lg transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
         </div>
 
         {/* Dots */}
