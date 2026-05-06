@@ -1,3 +1,5 @@
+"use client";
+
 type TagColor = "green" | "blue" | "gold" | "gray";
 
 type Phase = {

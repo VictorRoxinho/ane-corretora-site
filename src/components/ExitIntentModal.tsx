@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { WA_LINK } from "@/lib/constants";
 import { WhatsAppIcon } from "@/components/icons";

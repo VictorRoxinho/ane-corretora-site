@@ -1,3 +1,5 @@
+"use client";
+
 import { WA_LINK_INDICACAO } from "@/lib/constants";
 import { useReveal } from "@/hooks/useReveal";
 import { WhatsAppIcon } from "@/components/icons";

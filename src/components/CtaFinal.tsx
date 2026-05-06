@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 

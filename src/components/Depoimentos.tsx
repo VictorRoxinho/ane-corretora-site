@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { WA_LINK } from "@/lib/constants";
 import { useReveal } from "@/hooks/useReveal";

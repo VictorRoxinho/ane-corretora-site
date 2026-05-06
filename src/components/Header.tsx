@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { WA_LINK, IG_LINK, IG_GRADIENT } from "@/lib/constants";
 import { WhatsAppIcon, InstagramIcon } from "@/components/icons";
