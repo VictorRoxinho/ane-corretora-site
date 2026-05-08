@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { WA_LINK } from "@/lib/constants";
 
+
 const slides = [
   {
     id: 1,
@@ -54,27 +55,23 @@ const slides = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
   const touchStartX = useRef<number>(0);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
 
   useEffect(() => {
-    if (paused) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [paused, next]);
+  }, [next]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-    setPaused(true);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     const delta = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
-    setPaused(false);
   };
 
   const slide = slides[current];

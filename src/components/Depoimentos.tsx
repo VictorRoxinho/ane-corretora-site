@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { WA_LINK } from "@/lib/constants";
 import { useReveal } from "@/hooks/useReveal";
 
@@ -105,38 +107,56 @@ function DepoimentoCard({ dep }: { dep: typeof depoimentos[0] }) {
 
 export default function Depoimentos() {
   const { ref: titleRef, visible: titleVisible } = useReveal(0.2);
+
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [cardsPerView, setCardsPerView] = useState(1);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [showCursor, setShowCursor] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const dragStartX = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const autoplay = useRef(
+    Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })
+  );
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: false, align: "start" },
+    [autoplay.current]
+  );
+
+  const setRefs = useCallback(
+    (node: HTMLDivElement | null) => {
+      containerRef.current = node;
+      emblaRef(node);
+    },
+    [emblaRef]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCurrent(emblaApi.selectedScrollSnap());
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
 
   useEffect(() => {
-    const update = () => setCardsPerView(window.innerWidth >= 768 ? 3 : 1);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
-  const maxIndex = Math.max(0, depoimentos.length - cardsPerView);
-
-  // Clamp index when viewport changes
-  useEffect(() => {
-    setCurrent((prev) => Math.min(prev, maxIndex));
-  }, [maxIndex]);
-
-  // Auto-advance
-  useEffect(() => {
-    if (paused || maxIndex === 0) return;
-    const id = setInterval(() => {
-      setCurrent((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 5000);
-    return () => clearInterval(id);
-  }, [paused, maxIndex]);
-
-  const cardWidth = 100 / cardsPerView;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
 
   return (
     <section id="depoimentos" className="py-20 bg-gray-50">
@@ -166,9 +186,9 @@ export default function Depoimentos() {
         {/* Carousel */}
         <div className="relative">
           {/* Prev arrow */}
-          {current > 0 && (
+          {canScrollPrev && (
             <button
-              onClick={() => setCurrent((c) => Math.max(0, c - 1))}
+              onClick={() => emblaApi?.scrollPrev()}
               aria-label="Anterior"
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-10 h-10 rounded-full bg-gray-900/80 hover:bg-gray-900 text-white flex items-center justify-center shadow-lg transition-colors"
             >
@@ -179,42 +199,17 @@ export default function Depoimentos() {
           )}
 
           <div
-            ref={trackRef}
+            ref={setRefs}
             className="overflow-hidden cursor-none select-none"
-            onMouseEnter={() => { setPaused(true); setShowCursor(true); }}
-            onMouseLeave={() => {
-              setPaused(false);
-              setShowCursor(false);
-              dragStartX.current = null;
-            }}
-            onMouseDown={(e) => {
-              dragStartX.current = e.clientX;
-            }}
-            onMouseMove={(e) => {
-              if (!trackRef.current) return;
-              const rect = trackRef.current.getBoundingClientRect();
-              setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-            }}
-            onMouseUp={(e) => {
-              if (dragStartX.current !== null) {
-                const delta = e.clientX - dragStartX.current;
-                if (Math.abs(delta) > 50) {
-                  if (delta < 0) setCurrent((c) => Math.min(maxIndex, c + 1));
-                  else setCurrent((c) => Math.max(0, c - 1));
-                }
-              }
-              dragStartX.current = null;
-            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onMouseMove={handleMouseMove}
           >
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${current * cardWidth}%)` }}
-            >
+            <div className="flex">
               {depoimentos.map((dep) => (
                 <div
                   key={dep.id}
-                  className="flex-shrink-0 px-3"
-                  style={{ width: `${cardWidth}%` }}
+                  className="flex-shrink-0 basis-full md:basis-1/3 px-3"
                 >
                   <DepoimentoCard dep={dep} />
                 </div>
@@ -222,7 +217,7 @@ export default function Depoimentos() {
             </div>
 
             {/* Custom cursor */}
-            {showCursor && (
+            {hovered && (
               <div
                 className="absolute pointer-events-none z-20 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: cursorPos.x, top: cursorPos.y }}
@@ -240,9 +235,9 @@ export default function Depoimentos() {
           </div>
 
           {/* Next arrow */}
-          {current < maxIndex && (
+          {canScrollNext && (
             <button
-              onClick={() => setCurrent((c) => Math.min(maxIndex, c + 1))}
+              onClick={() => emblaApi?.scrollNext()}
               aria-label="Próximo"
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-10 h-10 rounded-full bg-gray-900/80 hover:bg-gray-900 text-white flex items-center justify-center shadow-lg transition-colors"
             >
@@ -254,12 +249,12 @@ export default function Depoimentos() {
         </div>
 
         {/* Dots */}
-        {maxIndex > 0 && (
+        {scrollSnaps.length > 1 && (
           <div className="flex justify-center gap-2 mt-8 mb-2">
-            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            {scrollSnaps.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrent(i)}
+                onClick={() => emblaApi?.scrollTo(i)}
                 aria-label={`Depoimento ${i + 1}`}
                 className={`rounded-full overflow-hidden transition-all duration-300 ${
                   i === current
@@ -273,7 +268,7 @@ export default function Depoimentos() {
                     className="h-full bg-brand-green rounded-full"
                     style={{
                       animation: "fillBar 5s linear forwards",
-                      animationPlayState: paused ? "paused" : "running",
+                      animationPlayState: hovered ? "paused" : "running",
                     }}
                   />
                 )}

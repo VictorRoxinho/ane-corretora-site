@@ -42,7 +42,7 @@ const phases: Phase[] = [
         id: "ssr",
         title: "Migrar para SSR (Next.js)",
         description: "Fazer antes das páginas de empreendimentos. SPA não indexa páginas internas no Google — todo esforço de conteúdo seria desperdiçado.",
-        done: false,
+        done: true,
       },
       {
         id: "launch-pages",
