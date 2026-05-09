@@ -5,6 +5,7 @@ import { WA_LINK, IG_LINK, IG_GRADIENT } from "@/lib/constants";
 import { WhatsAppIcon, InstagramIcon } from "@/components/icons";
 
 const navLinks = [
+  { href: "/imoveis", label: "Lançamentos" },
   { href: "#como-funciona", label: "Como Funciona" },
   { href: "#construtoras", label: "Construtoras" },
   { href: "#depoimentos", label: "Depoimentos" },
