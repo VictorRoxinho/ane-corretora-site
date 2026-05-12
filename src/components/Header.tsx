@@ -41,7 +41,7 @@ export default function Header() {
         <div className="bg-white rounded-full shadow-lg px-5 md:px-10 h-16 md:h-22 flex items-center justify-between gap-4">
 
           {/* Left: Logo */}
-          <a href="#" className="flex-shrink-0">
+          <a href="/" className="flex-shrink-0">
             <Logo />
           </a>
 

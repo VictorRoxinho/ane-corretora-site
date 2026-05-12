@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { empreendimentos, getEmpreendimento } from "@/data/empreendimentos";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GaleriaFotos from "@/components/GaleriaFotos";
 import { WhatsAppIcon } from "@/components/icons";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 
@@ -122,23 +123,56 @@ export default async function EmpreendimentoPage({ params }: Props) {
 
         {/* Quick info bar */}
         <section className="bg-brand-green text-white">
-          <div className="max-w-4xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div>
-              <p className="text-white/60 text-xs uppercase tracking-wide mb-0.5">Parcela a partir de</p>
-              <p className="font-black text-xl">R$ {emp.parcelaMin.toLocaleString("pt-BR")}/mês</p>
+          <div className="max-w-4xl mx-auto px-4 md:px-6 py-4 md:py-5 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full bg-white/15 flex items-center justify-center">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Área privativa</p>
+                <p className="font-black text-sm md:text-xl">{emp.area ?? "A confirmar"}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-white/60 text-xs uppercase tracking-wide mb-0.5">Renda familiar até</p>
-              <p className="font-black text-xl">R$ {emp.rendaFamiliarMax.toLocaleString("pt-BR")}</p>
+
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full bg-white/15 flex items-center justify-center">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Renda familiar até</p>
+                <p className="font-black text-sm md:text-xl">R$ {emp.rendaFamiliarMax.toLocaleString("pt-BR")}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-white/60 text-xs uppercase tracking-wide mb-0.5">Quartos</p>
-              <p className="font-black text-xl">{emp.quartos.join(" ou ")} quartos</p>
+
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full bg-white/15 flex items-center justify-center">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 19v-7h18v7H3zm0-7V9a1 1 0 011-1h5a1 1 0 011 1v3m4-3V9a1 1 0 011-1h5a1 1 0 011 1v3M3 15h18" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Quartos</p>
+                <p className="font-black text-sm md:text-xl">{emp.quartos.join(" ou ")} quartos</p>
+              </div>
             </div>
-            <div>
-              <p className="text-white/60 text-xs uppercase tracking-wide mb-0.5">Subsídio até</p>
-              <p className="font-black text-xl">R$ 55.000</p>
+
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-8 h-8 md:w-11 md:h-11 shrink-0 rounded-full bg-white/15 flex items-center justify-center">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Subsídio até</p>
+                <p className="font-black text-sm md:text-xl">R$ 55.000</p>
+              </div>
             </div>
+
           </div>
         </section>
 
@@ -189,6 +223,16 @@ export default async function EmpreendimentoPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* Galeria */}
+        {emp.fotos.length > 1 && (
+          <section className="pb-12 bg-white">
+            <div className="max-w-4xl mx-auto px-6">
+              <h3 className="font-bold text-gray-900 mb-4">Fotos do empreendimento</h3>
+              <GaleriaFotos fotos={emp.fotos} nome={emp.nome} />
+            </div>
+          </section>
+        )}
 
         {/* FAQ */}
         <section className="py-16 bg-gray-50">
