@@ -144,7 +144,7 @@ export default async function EmpreendimentoPage({ params }: Props) {
                 </svg>
               </div>
               <div>
-                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Renda familiar até</p>
+                <p className="text-white/60 text-[10px] md:text-xs uppercase tracking-wide leading-none mb-0.5">Renda sugerida</p>
                 <p className="font-black text-sm md:text-xl">R$ {emp.rendaFamiliarMax.toLocaleString("pt-BR")}</p>
               </div>
             </div>

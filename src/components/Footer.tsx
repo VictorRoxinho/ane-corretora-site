@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-400 py-10">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
+          <div className="text-center md:text-left">
             <p className="text-white font-bold text-lg">Ane França</p>
             <p className="text-sm mt-0.5">Corretora de Imóveis MCMV · Salvador/BA</p>
           </div>

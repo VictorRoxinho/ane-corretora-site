@@ -21,7 +21,7 @@ export default function Lancamentos() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {empreendimentos.map((emp) => (
+          {empreendimentos.slice(0, 4).map((emp) => (
             <Link
               key={emp.slug}
               href={`/imoveis/${emp.cidade}/${emp.slug}`}

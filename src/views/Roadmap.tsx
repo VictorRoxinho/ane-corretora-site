@@ -48,7 +48,7 @@ const phases: Phase[] = [
         id: "launch-pages",
         title: "Páginas de detalhe dos lançamentos",
         description: "Uma página por empreendimento com fotos, localização, faixa de renda, plantas e CTA.",
-        done: false,
+        done: true,
       },
       {
         id: "simulator",

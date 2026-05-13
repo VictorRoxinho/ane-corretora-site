@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Corretora oficial do Minha Casa Minha Vida em Salvador e região. Apartamentos com subsídio de até R$ 55.000, parcelas que cabem no bolso e sem burocracia.",
     images: [
       {
-        url: "/images/banner-mrv-bela-vista.jpeg",
+        url: "/images/empreendimentos/mrv-bela-vista/capa.jpeg",
         width: 1200,
         height: 630,
       },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Ane França Corretora | Minha Casa Minha Vida em Salvador/BA",
     description:
       "Corretora oficial do Minha Casa Minha Vida em Salvador e região. Simule grátis pelo WhatsApp.",
-    images: ["/images/banner-mrv-bela-vista.jpeg"],
+    images: ["/images/empreendimentos/mrv-bela-vista/capa.jpeg"],
   },
 };
 

@@ -106,7 +106,7 @@ export default function GaleriaFotos({ fotos, nome }: { fotos: string[]; nome: s
 
           {/* Thumbnails */}
           {fotos.length > 1 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[90vw] px-2">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[90vw] px-2 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {fotos.map((src, i) => (
                 <button
                   key={i}

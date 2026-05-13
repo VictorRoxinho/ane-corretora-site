@@ -16,6 +16,9 @@ dist-ssr
 .next/
 out/
 
+# Books / materiais internos
+public/books/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

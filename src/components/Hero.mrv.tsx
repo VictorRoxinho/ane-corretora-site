@@ -45,7 +45,7 @@ const slides = [
     id: 3,
     badge: "Novo Lançamento · Direcional",
     bgGradient: "from-[#1A3A1A] to-[#2D5A2D]",
-    bgImage: "/images/banner-conquista-vila-verde.png",
+    bgImage: "/images/empreendimentos/conquista-vila-verde/capa.png",
     darkOverlay: true,
     content: {
       type: "launch" as const,

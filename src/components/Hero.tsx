@@ -22,7 +22,7 @@ const slides = [
   {
     id: 2,
     bgGradient: "from-[#0D2137] to-[#1A3A5C]",
-    bgImage: "/images/banner-mrv-bela-vista.jpeg",
+    bgImage: "/images/empreendimentos/mrv-bela-vista/capa.jpeg",
     overlay: "bg-black/50",
     content: {
       type: "launch" as const,
@@ -38,7 +38,7 @@ const slides = [
   {
     id: 3,
     bgGradient: "from-[#1A3A1A] to-[#2D5A2D]",
-    bgImage: "/images/banner-conquista-vila-verde.png",
+    bgImage: "/images/empreendimentos/conquista-vila-verde/capa.png",
     overlay: "bg-black/50",
     content: {
       type: "launch" as const,
@@ -95,7 +95,7 @@ export default function Hero() {
               {/* Slide principal: gradiente full + imagem à direita */}
               <div className={`absolute inset-0 bg-gradient-to-br ${s.bgGradient}`} />
               <img
-                src="/images/banner-mrv-bela-vista.jpeg"
+                src="/images/empreendimentos/mrv-bela-vista/capa.jpeg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
               />
