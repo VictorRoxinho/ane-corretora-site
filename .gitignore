@@ -19,6 +19,13 @@ out/
 # Books / materiais internos
 public/books/
 
+# Windows system files
+desktop.ini
+Thumbs.db
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
