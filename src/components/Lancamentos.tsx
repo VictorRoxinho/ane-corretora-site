@@ -21,11 +21,11 @@ export default function Lancamentos() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {empreendimentos.slice(0, 4).map((emp) => (
+          {empreendimentos.slice(0, 4).map((emp, index) => (
             <Link
               key={emp.slug}
               href={`/imoveis/${emp.cidade}/${emp.slug}`}
-              className="group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              className={`group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300${index === 3 ? " hidden md:block" : ""}`}
             >
               <div className="relative h-52 overflow-hidden">
                 <img

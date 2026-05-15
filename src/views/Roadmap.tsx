@@ -50,12 +50,6 @@ const phases: Phase[] = [
         description: "Uma página por empreendimento com fotos, localização, faixa de renda, plantas e CTA.",
         done: true,
       },
-      {
-        id: "simulator",
-        title: "Simulador de renda/parcela",
-        description: "Campo de renda familiar → mostra faixa MCMV elegível e parcela estimada.",
-        done: false,
-      },
     ],
   },
   {
@@ -87,12 +81,6 @@ const phases: Phase[] = [
         id: "google-business",
         title: "Google Business Profile",
         description: "Criar perfil no Google Maps com endereço Salvador/BA, horário, fotos e link.",
-        done: false,
-      },
-      {
-        id: "real-images",
-        title: "Imagens reais dos empreendimentos",
-        description: "Slides 2 e 3 do Hero precisam de fotos reais (MRV Bela Vista, Conquista Vila Verde).",
         done: false,
       },
       {

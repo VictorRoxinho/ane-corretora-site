@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <Lancamentos />
-        <JornadaCards />
+<JornadaCards />
         <ComoFunciona />
         <Construtoras />
         <Indicacoes />

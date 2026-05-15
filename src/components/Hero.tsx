@@ -12,11 +12,17 @@ const slides = [
     overlay: "bg-black/40",
     content: {
       type: "main" as const,
-      badge: "Corretora oficial MCMV · Salvador/BA",
-      title: "Sua casa própria\ncomeça aqui",
+      badge: "Especialista MCMV · Salvador/BA",
+      pretitle: "Oi! Me chamo Ane 👋",
+      title: "Meu objetivo é te mostrar\ncomo é simples conquistar\nseu imóvel.",
       subtitle:
-        "Já ajudei dezenas de famílias em Salvador a conquistar o apartamento próprio pelo Minha Casa Minha Vida — sem burocracia e sem enrolação.",
-      cta: "Quero minha casa agora",
+        "Com renda de até R$ 8.000, você provavelmente já se encaixa no Minha Casa Minha Vida — e eu cuido de todo o processo pra você.",
+      cta: "Vamos conversar?",
+      stats: [
+        { value: "30+", label: "famílias atendidas" },
+        { value: "2 anos", label: "só MCMV" },
+        { value: "R$ 55mil", label: "subsídio máx." },
+      ],
     },
   },
   {
@@ -124,9 +130,15 @@ export default function Hero() {
 
           {/* Left: text */}
           <div className="max-w-2xl">
-            <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4 border border-white/20">
+            <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-2 md:mb-4 border border-white/20">
               {slide.content.badge}
             </span>
+
+            {"pretitle" in slide.content && (
+              <p className="text-brand-gold font-bold text-base md:text-xl mb-0.5 md:mb-1">
+                {slide.content.pretitle}
+              </p>
+            )}
 
             {"location" in slide.content && (
               <div className="flex items-center gap-1.5 text-white/60 text-sm mb-3">
@@ -138,9 +150,20 @@ export default function Hero() {
               </div>
             )}
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-4 whitespace-pre-line">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight mb-2 md:mb-4 whitespace-pre-line">
               {slide.content.title}
             </h1>
+
+            {"stats" in slide.content && (
+              <div className="flex flex-wrap items-center gap-x-3 md:gap-x-5 gap-y-1.5 mb-2 md:mb-4">
+                {(slide.content.stats as { value: string; label: string }[]).map((stat, i) => (
+                  <div key={i} className="flex items-baseline gap-1">
+                    <span className="text-brand-gold font-black text-base md:text-xl leading-none">{stat.value}</span>
+                    <span className="text-white/55 text-xs">{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {"highlight" in slide.content && (
               <div className="inline-block bg-brand-gold text-brand-green font-bold text-sm px-4 py-1.5 rounded-full mb-4">
@@ -148,7 +171,7 @@ export default function Hero() {
               </div>
             )}
 
-            <p className="text-white/75 text-base md:text-lg leading-relaxed max-w-xl">
+            <p className="hidden md:block text-white/75 text-base md:text-lg leading-relaxed max-w-xl">
               {slide.content.subtitle}
             </p>
           </div>
